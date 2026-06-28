@@ -3,11 +3,205 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="refresh" content="0; url=password-slot.html">
   <title>AF Cyber Games</title>
-  <link rel="canonical" href="password-slot.html">
+  <style>
+    :root {
+      --bg: #06111f;
+      --panel: rgba(10, 28, 43, 0.9);
+      --line: rgba(135, 220, 255, 0.24);
+      --text: #f7fbff;
+      --muted: #a9b7c7;
+      --cyan: #2ee7ff;
+      --amber: #ffd166;
+      --coral: #ff5f6d;
+      --lime: #9dff6f;
+      --mono: "Courier New", Courier, monospace;
+      --body: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      background: var(--bg);
+    }
+
+    body {
+      min-height: 100dvh;
+      margin: 0;
+      padding: clamp(18px, 5vw, 44px) 16px;
+      color: var(--text);
+      font-family: var(--body);
+      background:
+        radial-gradient(circle at 20% 8%, rgba(46, 231, 255, 0.2), transparent 28%),
+        radial-gradient(circle at 84% 14%, rgba(255, 209, 102, 0.18), transparent 28%),
+        linear-gradient(135deg, #06111f 0%, #0f2537 48%, #06111f 100%);
+    }
+
+    .wrap {
+      width: min(100%, 1040px);
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: clamp(28px, 6vw, 52px);
+    }
+
+    h1 {
+      max-width: 860px;
+      margin: 0 0 14px;
+      font-size: clamp(2.4rem, 8vw, 5.8rem);
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .intro {
+      max-width: 720px;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2.5vw, 1.24rem);
+      line-height: 1.52;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .game-card {
+      display: grid;
+      min-height: 260px;
+      padding: clamp(18px, 4vw, 28px);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      color: inherit;
+      background: var(--panel);
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      text-decoration: none;
+      transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .game-card:hover,
+    .game-card:focus-visible {
+      transform: translateY(-4px);
+      border-color: rgba(46, 231, 255, 0.7);
+      box-shadow: 0 28px 72px rgba(0, 0, 0, 0.38), 0 0 34px rgba(46, 231, 255, 0.14);
+      outline: none;
+    }
+
+    .game-card:nth-child(2):hover,
+    .game-card:nth-child(2):focus-visible {
+      border-color: rgba(255, 209, 102, 0.74);
+      box-shadow: 0 28px 72px rgba(0, 0, 0, 0.38), 0 0 34px rgba(255, 209, 102, 0.13);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+
+    .game-number {
+      color: var(--cyan);
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .game-card:nth-child(2) .game-number {
+      color: var(--amber);
+    }
+
+    .tag {
+      padding: 8px 10px;
+      border-radius: 999px;
+      color: var(--lime);
+      background: rgba(157, 255, 111, 0.09);
+      border: 1px solid rgba(157, 255, 111, 0.3);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.45rem, 4vw, 2.3rem);
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .game-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.45;
+    }
+
+    .play {
+      align-self: end;
+      margin-top: 34px;
+      color: var(--amber);
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 720px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .game-card {
+        min-height: 230px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <p><a href="password-slot.html">Open Password Slot Machine</a></p>
+  <main class="wrap">
+    <header>
+      <h1>AF Cyber Games</h1>
+      <p class="intro">Fast, touch-friendly arcade games for Cyber Security Month. Pick a station, play a short round, and leave with one sharper security reflex.</p>
+    </header>
+
+    <section class="grid" aria-label="Cyber security games">
+      <a class="game-card" href="cyber-shield-sprint.html">
+        <div class="card-top">
+          <span class="game-number">Game 01</span>
+          <span class="tag">iPad arcade</span>
+        </div>
+        <div>
+          <h2>Cyber Shield Sprint</h2>
+          <p>Sort risky signals from readiness actions before they hit the network. Teaches phishing, MFA, patching, backups, USB safety, and data handling.</p>
+        </div>
+        <span class="play">Play now</span>
+      </a>
+
+      <a class="game-card" href="password-slot.html">
+        <div class="card-top">
+          <span class="game-number">Game 02</span>
+          <span class="tag">Entropy lesson</span>
+        </div>
+        <div>
+          <h2>Password Slot Machine</h2>
+          <p>Spin password fragments and watch crack time change. Teaches why length, randomness, and passphrases beat familiar patterns.</p>
+        </div>
+        <span class="play">Play now</span>
+      </a>
+    </section>
+  </main>
 </body>
 </html>
